@@ -1,0 +1,15 @@
+# ~/.config/systemd/user/unread-msf.service
+[Unit]
+Description=Thunderbird unread mail counter for polybar
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=unread-msf --output %t/unread-msf --on-change "polybar-msg action mail hook 0"
+"%h/.thunderbird/PROFILE.default-release/ImapMail/imap.gmail.com/INBOX.msf"
+Restart=on-failure
+RestartSec=5
+StandardOutput=null
+
+[Install]
+WantedBy=default.target
